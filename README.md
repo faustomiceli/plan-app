@@ -2,8 +2,6 @@
 Static html for plan application.
 
 #### Install
-
-- Install dependences
 ```
 npm install
 ```
