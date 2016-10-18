@@ -1,0 +1,39 @@
+.info {
+  display: flex;
+  flex-direction: column;
+
+  + .info {
+    padding-top: $content-padding;
+  }
+
+  &--column {
+    flex-direction: row;
+    flex-wrap: wrap;
+
+    @for $i from 1 through 10 {
+      &-#{$i} {
+        > div {
+          width: 100% / $i;
+        }
+      }
+    }
+  }
+
+  &__item {
+    display: flex;
+    flex-direction: row;
+    padding-bottom: $content-padding / 2;
+
+    b {
+      padding: 0 10px 0 0;
+    }
+
+    &--multiline {
+      flex-direction: column;
+
+      b {
+        padding: 0 0 3px 0;
+      }
+    }
+  }
+}

@@ -1,0 +1,189 @@
+.leftbar {
+  $leftbar-darkenColor: darken($leftbar-color, 15%);
+  $leftbar-darkColor: darken($leftbar-color, 10%);
+  $leftbar-lightColor: lighten($leftbar-color, 5%);
+  $leftbar-padding: 10px;
+
+  position: fixed;
+  left: 0;
+  top: $header-height;
+  z-index: map-get($zindex, leftbar);
+  @include span(2 no-gutters);
+  height: calc(100vh - #{$header-height});
+  background: $leftbar-color;
+  box-shadow: inset -7px 0 9px -7px rgba($leftbar-darkColor, 0.4);
+  @include transition(transform 333ms ease);
+
+  .hide-leftbar & {
+    transform: translate3d(-100%, 0, 0);
+  }
+
+  &__content {
+    overflow-y: scroll;
+    height: 100%;
+  }
+
+  &__buttons {
+    position: fixed;
+    bottom: 0;
+    right: 0;
+    padding: $leftbar-padding;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    @include transition(transform 333ms ease-out);
+
+    .hide-leftbar & {
+      transform: translate3d(#{$btn-w + $leftbar-padding + $content-padding}, 0, 0);
+    }
+
+    .btn {
+      background: getColor(btn, dark-bg);
+      color: getColor(btn, dark-icon);
+      box-shadow: 0px 0px 0px 2px rgba(getColor(btn, dark-icon),0.1);
+
+      .close {
+        width: 24px;
+        height: 24px;
+        margin: auto;
+        position: relative;
+        @include transition(.4s);
+
+        .bar {
+          height: 12px;
+          width: 12px;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          background:none;
+          border-top: 3px solid getColor(btn, dark-icon);
+          border-right: 3px solid getColor(btn, dark-icon);
+          border-radius: 0;
+          transform: translate3d(-50%, -50%, 0) rotate(45deg);
+          margin-left: -6px;
+          @include transition(.4s);
+
+          &:nth-of-type(2) {
+            transform: translate3d(50%, -50%, 0) rotate(225deg);
+          }
+        }
+
+        .hide-leftbar & {
+          transform: translate3d(4px, 0, 0);
+
+          .bar {
+            &:nth-of-type(2) {
+              transform: translate3d(-50%, -50%, 0) rotate(45deg);
+            }
+          }
+        }
+      }
+
+      &:hover {
+        background: lighten(getColor(btn, dark-bg), 5%);
+
+        i {
+          color: getColor(btn, dark-icon);
+        }
+
+        .bar {
+          border-color: getColor(btn, dark-icon);
+        }
+      }
+    }
+  }
+
+  &__nav {
+    padding-bottom: $leftbar-padding * 2;
+
+    h2 {
+      $title-height: $leftbar-nav-height * 0.8;
+
+      background: $leftbar-darkenColor;
+      width: 100%;
+      height: $leftbar-nav-height * 0.8;
+      @include font(15px, ($title-height - 2), $font-family-bold-sans-serif);
+      text-transform: uppercase;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      padding: 0 $leftbar-padding;
+      color: #fff;
+    }
+
+    ul {
+      li {
+        position: relative;
+
+        > a {
+          display: block;
+          height: $leftbar-nav-height;
+          @include font(14px, ($leftbar-nav-height - 3), $font-family-regular-sans-serif);
+          color: #fff;
+          padding: 0 $leftbar-padding;
+          border-bottom: 1px solid $leftbar-darkColor;
+          border-top: 1px solid $leftbar-lightColor;
+          @include transition(all 222ms ease);
+
+          span {
+            overflow: hidden;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            display: block;
+            @include transition(transform 222ms ease);
+          }
+        }
+
+        > div {
+          position: absolute;
+          top: 0;
+          right: 0;
+          opacity: 0.001;
+          pointer-events: none;
+          @include transition(opacity 222ms ease);
+          display: flex;
+          flex-direction: row;
+          flex-wrap: nowrap;
+          background: $leftbar-darkColor;
+
+          a {
+            color: #fff;
+            width: $leftbar-nav-height;
+            height: $leftbar-nav-height;
+            text-align: center;
+            line-height: $leftbar-nav-height;
+
+            i {
+              font-size: 19px;
+              opacity: 0.8;
+            }
+
+            &:hover {
+              i {
+                opacity: 1;
+              }
+            }
+          }
+        }
+
+        &:hover, &.selected {
+          > a {
+            background: $leftbar-darkColor;
+            border-color: $leftbar-darkColor;
+
+            span {
+              transform: translate3d(5px, 0, 0);
+            }
+          }
+        }
+
+        &:hover {
+          > div {
+            opacity: 1;
+            pointer-events: auto;
+          }
+        }
+      }
+    }
+  }
+}

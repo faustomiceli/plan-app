@@ -1,0 +1,120 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  -webkit-tap-highlight-color: rgba(0,0,0,0);
+}
+
+:focus {
+  outline: none;
+}
+
+html {
+  font-size: 62.5%;
+}
+
+body {
+
+  @include font-smoothing(antialiased);
+  @include text-size-adjust(none);
+
+  @include font($font-size-base, $line-height-base, $font-family-base, 400);
+  color: getColor(default,txt);
+  background: getColor(default,bg);
+
+  text-rendering: optimizeLegibility;
+  -webkit-backface-visibility: hidden;
+
+  -webkit-user-drag: none;
+  -webkit-text-size-adjust: none;
+
+  &:before {
+    content: ' ';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: map-get($zindex, overlay);
+    background: rgba(#000, 0.85);
+    opacity: 0.001;
+    pointer-events: none;
+    transition: all $overlay-animation-timing;
+  }
+  #{$overlay-showClass} & {
+    &:before {
+      opacity: 1;
+      pointer-events: auto;
+    }
+  }
+}
+
+a {
+  cursor: pointer;
+  text-decoration: none;
+  color: getColor(default,link);
+
+  &:hover {
+    color: getColor(default,link-hover);
+  }
+
+  &:after, &:before {
+    @include transition(all 0.111s linear);
+  }
+}
+
+input,
+button,
+select,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  line-height: inherit;
+  resize: none;
+}
+
+ul, ol, li {list-style: none;}
+b, strong {font-weight:bold;}
+em {font-style:italic;}
+
+img {
+  border: 0;
+  display: block;
+}
+
+canvas {
+  width: 100%;
+  height: auto
+}
+
+.left {float: left !important;}
+.right {float: right !important;}
+.assistive-text {@extend %assistive-text;}
+
+.align-right {text-align: right !important;}
+.align-left {text-align: left !important;}
+.align-center {text-align: center !important;}
+
+.embed-container {
+  position: relative;
+
+  iframe, object, embed {
+    position: absolute;
+    top: 0;
+    left: 0;
+    border: 0;
+    width: 100%;
+    height: 100%;
+  }
+}
+
+.el-hide {
+  opacity: 0.0001;
+  pointer-events: none;
+}
+
+.el-center {
+    @include centerer();
+}

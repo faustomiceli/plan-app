@@ -1,0 +1,4 @@
+.wrapper {
+  @include container;
+  padding-top: $header-height;
+}

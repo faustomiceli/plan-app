@@ -1,0 +1,58 @@
+.toggle {
+  $toggle-height: 18px;
+  $toggle-width: 60px;
+
+  display: inline-flex;
+  position: relative;
+  width: $toggle-width;
+  height: $toggle-height;
+  background: #fafafa;
+  align-self: center;
+  user-select: none;
+  overflow: hidden;
+
+  &:after, &:before {
+    flex: 1;
+    text-align: center;
+    line-height: $toggle-height;
+    font-size: 10px;
+  }
+
+  &:after {
+    content:"ON";
+  }
+
+  &:before {
+    content:"OFF";
+  }
+
+  input {
+    display:none;
+  }
+
+  label {
+    position:absolute;
+    top:0; left:0; right:0; bottom:0;
+    perspective:1000;
+    cursor:pointer;
+  }
+
+  .card {
+    position:relative;
+    background:limegreen;
+    transition:.4s;
+    width:50%;
+    height: $toggle-height;
+    pointer-events:none;
+    transform:translate(0);
+    background:transparent;
+    box-shadow:
+      -($toggle-width / 2) 0 limegreen,
+      ($toggle-width / 2) 0 tomato;
+  }
+
+  input:checked + label .card {
+    transform:translateX(#{($toggle-width / 2)});
+    background:transparent;
+  }
+}

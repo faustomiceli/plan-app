@@ -1,0 +1,52 @@
+table.table {
+  width: 100%;
+
+  @for $i from 1 through 12 {
+    &--col#{$i} {
+      @include span($i no-gutter);
+    }
+  }
+
+  th {
+    background: getColor(table, thead-bg);
+    color: getColor(table, thead-txt);
+    @include font(14px, 16px, $font-family-bold-sans-serif);
+    padding: 10px 5px;
+    text-transform: uppercase;
+  }
+
+  td {
+    padding: 6px 5px;
+    text-align: left;
+
+    &.td {
+      &--alignRight {
+        text-align: right;
+      }
+
+      &--alignCenter {
+        text-align: center;
+      }
+
+      &--evidence {
+        font-family: $font-family-semibold-sans-serif
+      }
+    }
+  }
+
+  tbody {
+    tr {
+      &:nth-child(even) {
+        background: getColor(table, tbody-even);
+      }
+
+      &:hover {
+        background: getColor(table, tbody-hover);
+      }
+    }
+  }
+
+  tfoot {
+    border-top: 1px solid getColor(table, tfoot-border);
+  }
+}

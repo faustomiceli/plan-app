@@ -1,0 +1,8 @@
+.content {
+  @include span(10 wide no-gutters last);
+  @include transition(width 333ms ease);
+
+  .hide-leftbar & {
+    @include span(12 wide no-gutters last);
+  }
+}

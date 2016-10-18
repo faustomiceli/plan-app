@@ -1,0 +1,126 @@
+.head {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: map-get($zindex, head);
+  @include span(12 no-gutter);
+  height: $header-height;
+  background: $brand-primary;
+  box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.15);
+
+  &__logo {
+    @include span(2);
+    position: relative;
+    text-align: center;
+    height: inherit;
+
+    svg {
+      @include centerer();
+      max-width: 90%;
+      max-height: 60%;
+      fill: #fff;
+    }
+  }
+
+  &__buttons {
+    @include span(10 last);
+    height: inherit;
+    text-align: right;
+  }
+
+  &__btn {
+    $min-width: $header-height + 5px;
+    $min-width-search: $min-width * 5;
+    $padding: (($min-width - 30px) / 2);
+
+    position: relative;
+    float: right;
+    height: inherit;
+    min-width: $min-width;
+    color: #fff;
+    text-align: center;
+    @include transition(all 333ms ease);
+    cursor: pointer;
+    padding: 0 $padding;
+    overflow: hidden;
+
+    &:hover {
+      background: getColor(header, btn-bg-hover);
+      color: #fff;
+    }
+
+    i {
+      @include font(28px);
+      position: relative;
+      z-index: map-get($zindex, head) + 1;
+      line-height: $header-height;
+      width: 30px;
+    }
+
+    span {
+      line-height: $header-height;
+      @include font(18px);
+    }
+
+    &--search {
+      input {
+        pointer-events: none;
+        visibility: hidden;
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: calc(#{$min-width-search} - #{$padding + $min-width});
+        height: $header-height;
+        background: getColor(header, btn-bg-hover);
+        color: #fff;
+        @include font(18px, $header-height, $font-family-sans-serif);
+        transform: scale3d(0,1,1);
+        transform-origin: 0;
+        @include transition(all 0s 0s ease);
+      }
+
+      &.open {
+        min-width: $min-width-search;
+
+        input {
+          pointer-events: auto;
+          visibility: visible;
+          transform: scale3d(1,1,1);
+          @include transition(all 0s 333ms ease);
+        }
+      }
+    }
+
+    &--txtLeft {
+      i {
+        float: right;
+      }
+
+      span {
+        float: left;
+        padding-right: 15px;
+      }
+
+      input {
+        padding-right: $min-width;
+        padding-left: $padding;
+      }
+    }
+
+    &--txtRight {
+      i {
+        float: left;
+      }
+
+      span {
+        float: right;
+        padding-left: 15px;
+      }
+
+      input {
+        padding-left: $min-width;
+        padding-right: $padding;
+      }
+    }
+  }
+}

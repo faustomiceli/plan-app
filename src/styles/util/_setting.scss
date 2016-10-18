@@ -1,0 +1,88 @@
+$support-ie8: true;
+
+// FONT
+//$font-path: '/etc/designs/museivaticani/release2015/library/main/fonts/';
+$font-path: '../fonts/';
+
+$font-family-sans-serif: "Roboto-Light", sans-serif !default;
+$font-family-regular-sans-serif: "Roboto-Regular", sans-serif !default;
+$font-family-semibold-sans-serif: "Roboto-Medium" !default;
+$font-family-bold-sans-serif: "Roboto-Bold" !default;
+$font-family-condensed: "RobotoCondensed-Regular";
+$font-family-condensed-bold: "RobotoCondensed-Bold";
+$font-family-condensed-bolditalic: "RobotoCondensed-BoldItalic";
+$font-family-condensed-italic: "RobotoCondensed-Italic";
+$font-family-other: "amaticsc-regular";
+$font-family-serif: serif !default;
+$font-family-monospace: monospace !default;
+
+$font-family-base: $font-family-sans-serif !default;
+$font-size-base: 14px !default;
+$font-size-large: 20px !default;
+$font-size-small: 11px !default;
+
+$line-height-base: 20px !default;
+$line-height-large: 24px !default;
+$line-height-small: 13px !default;
+
+$rem-base: 10px !default;
+$content-padding: 12px;
+
+// -------------------------------
+// Susy setting
+// -------------------------------
+$susy: (
+  columns: 12,
+  gutters: 1/4,
+  math: fluid,
+  gutter-position: inside,
+);
+
+// -------------------------------
+// Overlay
+// -------------------------------
+$overlay-animation-timing: 333ms;
+$overlay-showClass: '.modal-open';
+
+// -------------------------------
+// Buttons
+// -------------------------------
+$btn-w: 50px;
+$btn-h: 50px;
+
+// -------------------------------
+// Head
+// -------------------------------
+$header-height: 60px;
+
+// -------------------------------
+// Leftbar
+// -------------------------------
+$leftbar-nav-height: 45px;
+$leftbar-color: getColor(leftbar, bg);
+
+// -------------------------------
+// Menu
+// -------------------------------
+$menu-transition-open: 222ms;
+
+// -------------------------------
+// Timing
+// -------------------------------
+$loading-transition: 222ms;
+
+// -------------------------------
+// UI
+// -------------------------------
+$minus-tap: 44px;
+
+$content-bg: #E7E8E8;
+
+$subheader: #DBDBDB;
+$subheader-height: 54px;
+
+$ui-toggle-on: #5BA801;
+$ui-toggle-off: #333;
+
+$ui-button-color: #868686;
+$ui-padding: 12px;

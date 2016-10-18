@@ -1,0 +1,80 @@
+.formfield {
+  $formfield-padding: 10px;
+
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  padding-bottom: $formfield-padding * 2;
+
+  @for $i from 1 through 12 {
+    &--col#{$i} {
+      @include span($i no-gutter);
+      padding-right: $formfield-padding * 2;
+    }
+  }
+
+  @mixin formfield-child() {
+    width: 100%;
+    @include font(15px, 15px, $font-family-regular-sans-serif);
+    padding: ($formfield-padding - 1) $formfield-padding;
+    margin-top: $formfield-padding / 2;
+    border-bottom: 1px solid getColor(form, bg);
+    order: 3;
+
+    .formfield--error & {
+      border-bottom: 1px solid getColor(form, error) !important;
+      background: lighten(getColor(form, error),30%) !important;
+    }
+  }
+
+  &--start {
+    clear: both;
+  }
+
+  &__label {
+    @include font(13px, 13px, $font-family-bold-sans-serif);
+    text-transform: uppercase;
+    order: 1;
+  }
+
+  &__error {
+    @include font(13px, 13px, $font-family-semibold-sans-serif);
+    color: getColor(form, error);
+    order: 2;
+  }
+
+  &__input, &__select, &__textarea {
+    @include formfield-child;
+    @include transition(222ms ease);
+
+    &::-webkit-input-placeholder {
+      color: rgba(getColor(form, bg), 0.4);
+    }
+
+    &:focus {
+      background: rgba(getColor(form, bg), 0.8);
+      color: #fff;
+
+      &::-webkit-input-placeholder {
+        color: rgba(#fff, 0.4);
+      }
+    }
+  }
+
+  &__textarea {
+    min-height: 100px;
+  }
+
+  &__button {
+    @include formfield-child;
+    background: getColor(form, bg);
+    @include transition(background 222ms ease);
+    color: #fff;
+    text-align: center;
+
+    &:hover {
+      background: darken(getColor(form, bg), 5%);
+    }
+  }
+}

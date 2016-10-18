@@ -1,0 +1,22 @@
+@import '../util/setting';
+@import 'ionicons';
+
+@mixin load-font($font-name,$font-path) {
+    @font-face {
+        font-family: '#{$font-name}';
+        src: url('#{$font-path}#{$font-name}.woff2') format('woff2'),
+             url('#{$font-path}#{$font-name}.woff') format('woff'),
+             url('#{$font-path}#{$font-name}.ttf') format('truetype');
+        font-weight: normal;
+        font-style: normal;
+    }
+}
+
+@include load-font('Roboto-Regular', $font-path + 'roboto/Regular/');
+@include load-font('Roboto-Light', $font-path + 'roboto/Light/');
+@include load-font('Roboto-Medium', $font-path + 'roboto/Medium/');
+@include load-font('Roboto-Bold', $font-path + 'roboto/Bold/');
+@include load-font('RobotoCondensed-Regular',$font-path + 'roboto/CondensedRegular/');
+@include load-font('RobotoCondensed-Italic',$font-path + 'roboto/CondensedItalic/');
+@include load-font('RobotoCondensed-Bold',$font-path + 'roboto/CondensedBold/');
+@include load-font('RobotoCondensed-BoldItalic',$font-path + 'roboto/CondensedBoldItalic/');

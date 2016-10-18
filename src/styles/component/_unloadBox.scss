@@ -1,0 +1,382 @@
+.unloadBox {
+  $path: &;
+  $unloadBox-width: 170px;
+  $unloadBox-header-height: 40px;
+  $unloadBox-minHeight: 170px;
+  $unloadBox-small-height: 40px;
+  $unloadBox-data-width: 110px;
+  $unloadBox-data-height: 100px;
+  $unloadBox-padding: 5px;
+  $unloadBox-color-dark: darken($brand-primary, 15%);
+  $unloadBox-color-light: lighten($brand-primary, 15%);
+
+  $unloadBox-manColor: #F4EFFC;
+  $unloadBox-machineColor: #F6FCF8;
+
+  position: relative;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+
+  width: $unloadBox-width;
+  background: #fff;
+  box-shadow: 1px 1px 0px 0px rgba(darken(getColor(default,bg), 25%),0.6);
+  margin: 0 $content-padding $content-padding 0;
+
+  &--add {
+    background: #eaeaea;
+    height: 170px;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+
+    &:before {
+      @extend %ion;
+      content: '\f218';
+      color: darken(#eaeaea, 25%);
+      font-size: 40px;
+    }
+
+    &:after {
+      content: 'Nuova fase';
+      color: darken(#eaeaea, 30%);
+      font-size: 12px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
+
+    &:hover {
+      background: darken(#eaeaea, 5%);
+    }
+  }
+
+  h2 {
+    position: relative;
+    width: 100%;
+    background: rgba($brand-primary, 0.8);
+    text-align: left;
+    font-size: 12px;
+    line-height: 15px;
+    height: $unloadBox-header-height;
+    text-transform: uppercase;
+    font-weight: bold;
+    padding: 0;
+    @include transition(background 444ms ease);
+
+    span {
+      width: 100%;
+      @include centerer();
+      color: #fff;
+      padding: 0 ($unloadBox-padding * 2);
+    }
+  }
+
+  md-datepicker {
+    max-width: 100%;
+
+    .md-datepicker-button {
+      margin: 0 !important;
+      padding: 8px 4px !important;
+    }
+
+    .md-datepicker-input-container {
+      margin-left: 2px;
+    }
+  }
+
+  &__small {
+    width: 100%;
+    height: $unloadBox-small-height;
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    opacity: 0;
+    z-index: 100;
+    pointer-events: none;
+    transform: translate3d(100%,1,1);
+    cursor: pointer;
+    text-align: right;
+    padding: 0 $unloadBox-padding;
+    line-height: $unloadBox-small-height;
+
+    &:before {
+      @extend %ion;
+      @include centerer(false, true);
+      left: 10px;
+      font-size: 24px;
+    }
+
+    .hour, .res {
+      font-size: 15px;
+
+      &:after {
+        font-size: 12px;
+      }
+    }
+
+    .hour {
+      &:after {
+        content: ' ORE ';
+      }
+    }
+
+    .res {
+      &:before {
+        content: '/ ';
+      }
+
+      &:after {
+        content: ' RES ';
+      }
+    }
+  }
+
+  &__inner {
+    $pathInner: &;
+    position: relative;
+    width: 100%;
+    max-height: 600px;
+    overflow: hidden;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    @include transition(max-height 333ms ease);
+
+    > *:not(#{$path}__small) {
+      opacity: 1;
+      @include transition(opacity 222ms 333ms ease);
+    }
+
+    &--man {
+      #{$path}__small {
+        &:before {
+          content: '\f202';
+        }
+      }
+
+      &#{$pathInner}--small {
+        background: $unloadBox-manColor;
+
+        &:hover {
+          background: darken($unloadBox-manColor, 5%);
+        }
+      }
+    }
+
+    &--machine {
+      #{$path}__small {
+        &:before {
+          content: '\f13d';
+        }
+      }
+
+      &#{$pathInner}--small {
+        background: $unloadBox-machineColor;
+
+        &:hover {
+          background: darken($unloadBox-machineColor, 5%);
+        }
+      }
+    }
+
+    &--small {
+      max-height: $unloadBox-small-height;
+
+      > *:not(#{$path}__small) {
+        opacity: 0.001;
+        @include transition(opacity 111ms 0ms ease);
+      }
+
+      #{$path}__small {
+        opacity: 1;
+        pointer-events: auto;
+      }
+    }
+
+    > input {
+      width: 100%;
+      padding: ($unloadBox-padding * 2) $unloadBox-padding;
+    }
+  }
+
+  &__data {
+    position: relative;
+    width: $unloadBox-data-width;
+    height: $unloadBox-data-height;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    padding: $unloadBox-padding;
+  }
+
+  &__hour {
+    width: 70%;
+    text-align: right;
+    align-self: flex-end;
+    order: 2;
+
+    &:after {
+      content: 'Ore';
+      text-transform: uppercase;
+      font-size: 14px;
+      line-height: 14px;
+      font-weight: 200;
+      color: $unloadBox-color-dark;
+      display: block;
+    }
+
+    input {
+      font-size: 42px;
+      line-height: 42px;
+      font-weight: 900;
+      color: $unloadBox-color-dark;
+      background: transparent;
+      text-align: right;
+      width: 100%;
+
+      &::-webkit-input-placeholder {
+         color: rgba($unloadBox-color-dark, 0.3);
+         font-size: 42px;
+         line-height: 42px;
+         font-weight: 900;
+         padding-top: 7px;
+      }
+    }
+  }
+
+  &__res {
+    align-self: flex-start;
+    order: 1;
+    width: 30%;
+    color: $unloadBox-color-light;
+    text-align: left;
+
+    &:after {
+      content: 'Res';
+      text-transform: uppercase;
+      font-size: 10px;
+      line-height: 10px;
+      font-weight: 200;
+      display: block;
+    }
+
+    input {
+      font-size: 20px;
+      line-height: 20px;
+      font-weight: 900;
+      color: $unloadBox-color-light;
+      background: transparent;
+      text-align: left;
+      width: 100%;
+
+      &::-webkit-input-placeholder {
+         color: rgba($unloadBox-color-light, 0.3);
+         font-size: 20px;
+         line-height: 20px;
+         font-weight: 900;
+         padding-top: 3px;
+      }
+    }
+  }
+
+  &__btn {
+    width: $unloadBox-width - $unloadBox-data-width;
+    height: $unloadBox-data-height;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    padding: $unloadBox-padding;
+
+    > button {
+      width: 100%;
+      height: 50%;
+      font-size: 24px;
+      text-transform: uppercase;
+      border: 0;
+      color: $unloadBox-color-dark;
+      background: rgba($unloadBox-color-dark, 0.1);
+
+      &:hover {
+        background-color:  rgba($unloadBox-color-dark, 0.3);
+        @include transition(444ms ease);
+      }
+
+      &:active {
+        transition-duration: 0s;
+        background: rgba($unloadBox-color-dark, 0.8);
+        color: #fff;
+        transform: scale(0.9);
+      }
+    }
+  }
+
+  &__slider {
+    width: 100%;
+    padding: 0 $unloadBox-padding $unloadBox-padding;
+    min-height: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    input[type="range"] {
+      display: block;
+      -webkit-appearance: none;
+      background: rgba($unloadBox-color-light, 0.1);
+      width: 100%;
+      height: 3px;
+      border-radius: 5px;
+      margin: 0 auto;
+      outline: 0;
+      @include transition(background 444ms ease);
+
+      &:hover {
+        background:  rgba($unloadBox-color-light, 0.3);
+      }
+    }
+
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      background-color: rgba($unloadBox-color-light, 0.8);
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      cursor: pointer;
+      @include transition(444ms ease);
+    }
+
+    input[type="range"]::-webkit-slider-thumb:active {
+      transform: scale(1.2);
+    }
+  }
+
+  &__delete {
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: $unloadBox-header-height;
+    height: $unloadBox-header-height;
+    opacity: 0;
+    @include transition(background 444ms ease);
+
+    i {
+      @include centerer();
+      color: rgba(#fff, 0.8);
+      font-size: 18px;
+
+      &:hover {
+        color: rgba(#fff, 1);
+      }
+    }
+  }
+
+  &:hover {
+    h2 {
+      background: rgba($brand-primary, 1);
+    }
+
+    #{$path}__delete {
+      opacity: 1;
+    }
+  }
+}

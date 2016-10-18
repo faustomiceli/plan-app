@@ -1,0 +1,592 @@
+.gantt {
+  $gantt-path: &;
+  $gantt-button-padding: 10px;
+  $gantt-button-icon-size: 24px;
+  $gantt-proj-theme:  $red, $green, $lime, $blue-grey, $pink, $blue, $yellow, $indigo, $cyan, $deep-purple, $teal, $amber, $brown, $teal, $purple;
+  $gantt-timeline-height: 40px;
+  $gantt-timeline-day-width: 25px;
+  $gantt-row-height: 40px;
+  $gantt-row-phase-width: 250px;
+  $gantt-pattern-expiring: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAkAAAAJCAYAAADgkQYQAAAAN0lEQVQYV2NkIAIwEqHmPyFF/xkYGBgJKQJbhEsR2ASYU7ApQlGAzyQU/yCbhGECunU4FYAUAgBp4wYJDzYgLgAAAABJRU5ErkJggg==';
+  $gantt-pattern-expired: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAQAAAAECAYAAACp8Z5+AAAAH0lEQVQIW2NkQAX/GZH4/xkYGBhhAmAOSBJEwDkgAQCCrgQEqRgDDwAAAABJRU5ErkJggg==';
+  $gantt-pattern-done: 'data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAICAYAAADA+m62AAAAP0lEQVQYV42Q0QoAIAgDz///aMPAKKeQb26HTg0tB6zKVUhI4Bus5tMn2K4Djh7gBGXM7Uvo5riQ/BfUNwwTWfn+CgiQkAMbAAAAAElFTkSuQmCC';
+
+  @mixin projStatus($color, $suffix) {
+    &--expiring#{$suffix} {
+      background: linear-gradient(rgba($color, 0.8), rgba($color, 0.8)), url($gantt-pattern-expiring) !important;
+      background-repeat: repeat;
+    }
+
+    &--expired#{$suffix} {
+      background: linear-gradient(rgba($color, 0.8), rgba($color, 0.8)), url($gantt-pattern-expired) !important;
+      background-repeat: repeat;
+    }
+
+    &--done#{$suffix} {
+      background: linear-gradient(rgba($color, 0.8), rgba($color, 0.8)), url($gantt-pattern-done) !important;
+      background-repeat: repeat;
+    }
+  }
+
+  &__proj-list {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin-bottom: $content-padding;
+
+    &--vertical {
+      flex-direction: column;
+    }
+  }
+
+  &__proj-button {
+    position: relative;
+    min-height: 44px;
+    padding: $gantt-button-padding;
+    margin: ($gantt-button-padding / 2);
+    background: #ECECEC;
+    box-shadow: 1px 1px 0px 0px #9B9B9B;
+    border: 0;
+    opacity: 0.85;
+    font-size: 1.4rem;
+    text-transform: uppercase;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-items: center;
+
+    #{$gantt-path}__proj-list--vertical & {
+      margin: 0 0 $gantt-button-padding;
+    }
+
+    [data-sortable=true] & {
+      cursor: -webkit-grab;
+    }
+
+    [data-filter=true] & {
+      &:after {
+        align-items: flex-end;
+        @extend %icon-ion;
+        content: '\f306';
+        font-size: $gantt-button-icon-size;
+        padding-left: $gantt-button-padding;
+      }
+    }
+
+    &--order {
+      &:after {
+        align-items: flex-end;
+        @extend %icon-ion;
+        content: '\f38b' !important;
+        font-size: $gantt-button-icon-size;
+        padding-left: $gantt-button-padding;
+      }
+    }
+
+    &:hover {
+      opacity: 1;
+    }
+
+    @for $i from 1 through 15 {
+      &[data-proj='#{$i}'] {
+        $color: color(nth($gantt-proj-theme, $i), 100);
+        $color-text: color(nth($gantt-proj-theme, $i), 900);
+        background: $color;
+        color: $color-text;
+
+        .show-proj-#{$i} [data-filter=true] & {
+          &:after {
+            content: '\f133';
+            color: $color-text;
+          }
+        }
+      }
+    }
+
+    &--disabled {
+      opacity: 0.6;
+    }
+  }
+
+  &__wrapper {
+    position: relative;
+    width: 100%;
+    float: left;
+    padding: $content-padding;
+    margin-bottom: $content-padding;
+    background: #fff;
+    box-shadow: 1px 1px 0px 0px rgba(darken(getColor(default,bg), 25%),0.6);
+
+    #wrapper-left {
+      width: 20%;
+      float: left;
+      //padding-top: $gantt-timeline-height;
+      margin-bottom: $content-padding * 1.5;
+    }
+
+    #wrapper-right {
+      position: relative;
+      width: 80%;
+      float: left;
+      overflow-x: hidden;
+      margin-bottom: $content-padding * 1.5;
+    }
+
+    h2 {
+      height: $gantt-row-height;
+      line-height: $gantt-row-height;
+      display: block;
+      font-size: 12px;
+      padding: 0;
+    }
+  }
+
+  &__scroll {
+    position: relative;
+    display: inline-block;
+    z-index: 1;
+    -webkit-tap-highlight-color: rgba(0,0,0,0);
+    transform: translateZ(0);
+    -webkit-touch-callout: none;
+    user-select: none;
+    text-size-adjust: none;
+  }
+
+  &__header {
+    position: relative;
+    display: inline-flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    height: $gantt-timeline-height;
+    margin-bottom: 3px;
+
+    &:after {
+      content: ' ';
+      position: absolute;
+      bottom: -3px;
+      left: 0;
+      width: 100%;
+      border-bottom: 1px solid getColor(gantt,border);
+    }
+
+    ul {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: nowrap;
+      position: relative;
+      height: inherit;
+
+      &.label-offsetLeft {
+        &:before {
+          padding-left: $gantt-timeline-day-width * 2;
+        }
+      }
+
+      &:before {
+        content: attr(data-month);
+        position: absolute;
+        top: 0;
+        left: 0;
+        font-size: 10px;
+        text-transform: uppercase;
+        opacity: 0.9;
+      }
+
+      li {
+        position: relative;
+        align-self: flex-end;
+        width: $gantt-timeline-day-width;
+        max-width: $gantt-timeline-day-width;
+        min-width: $gantt-timeline-day-width;
+        text-align: center;
+        font-size: 12px;
+
+        &:before {
+          position: absolute;
+          bottom: -3px;
+          left: 0;
+          content: ' ';
+          width: 1px;
+          height: 5px;
+          border-left: 1px solid darken(getColor(gantt,border), 10%);
+        }
+
+        &.holiday {
+          color: getColor(gantt,holiday);
+
+          &:before {
+            border-color: darken(getColor(gantt,holiday), 10%);
+          }
+        }
+
+        &.today {
+          &:after {
+            content: ' ';
+            background: rgba(getColor(gantt,today), 0.1);
+            width: 24px;
+            height: 999px;
+            position: absolute;
+            top: 0;
+            left: 1px;
+            z-index: -1;
+          }
+        }
+      }
+    }
+  }
+
+  &__row, &__work {
+    position: relative;
+    height: $gantt-row-height;
+    min-height: $gantt-row-height;
+    @include transition(height 333ms ease);
+  }
+
+  &__row {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+
+    > h2 {
+      width: 100%;
+      font-size: 16px;
+      align-self: flex-start;
+    }
+
+    > h4 {
+      text-transform: uppercase;
+      font-size: 10px;
+      align-self: center;
+      justify-content: flex-end;
+      margin-right: 10px;
+
+      > div {
+        padding-left: 3px;
+      }
+    }
+  }
+
+  &__edit {
+    position: absolute;
+    top: $gantt-row-height;
+    left: 0;
+    width: 100%;
+    z-index: map-get($zindex, gantt-proj) + 1;
+    background: #fff;
+    overflow: hidden;
+    transform: scale3d(1,0,1);
+    opacity: 0.001;
+    @include transition(opacity 222ms 333ms ease);
+
+    .gantt__row--edit & {
+      opacity: 1;
+      transform: scale3d(1,1,1);
+    }
+
+    > button {
+      float: right;
+      width: 100%;
+      height: 30px;
+      font-size: 12px;
+      text-transform: uppercase;
+      border: 0;
+      background: #fff;
+
+      &:active {
+        background: getColor(gantt,border);
+      }
+    }
+  }
+
+  &__editProj {
+    position: relative;
+    min-height: $gantt-row-height;
+    border-bottom: 1px solid lighten(getColor(gantt,border), 3%);
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+
+    &:last-child {
+      border-bottom: 0;
+    }
+
+    h2 {
+      width: 70%;
+    }
+
+    div {
+      position: relative;
+      width: 30%;
+      padding: 0 0 15px 3px;
+
+      &:before {
+        color: lighten(getColor(default,txt), 20%);
+        font-size: 9px;
+        line-height: 9px;
+        position: absolute;
+        text-transform: uppercase;
+        bottom: 5px;
+        left: 3px;
+      }
+
+      &:nth-of-type(1) {
+        &:before {
+          content: 'Ore';
+        }
+      }
+
+      &:nth-of-type(2) {
+        &:before {
+          content: 'Res';
+        }
+      }
+
+      input {
+        width: calc(100% - #{$gantt-row-height - 19});
+        height: $gantt-row-height - 15;
+        text-align: left;
+        font-size: 16px;
+      }
+
+      button {
+        width: $gantt-row-height - 19;
+        height: 50%;
+        text-align: center;
+        border: 0;
+        background: #fff;
+        font-size: 16px;
+        position: absolute;
+        right: 4px;
+        opacity: 0.6;
+
+        &:hover {
+          opacity: 1;
+        }
+
+        &:nth-of-type(1) {
+          top: 0;
+        }
+
+        &:nth-of-type(2) {
+          top: 50%;
+        }
+      }
+    }
+  }
+
+  &__editBtn {
+    position: absolute;
+    top: 0;
+    right: 0;
+    height: $gantt-row-height;
+    width: $gantt-row-height;
+    text-align: center;
+    line-height: $gantt-row-height;
+    font-size: 18px;
+    cursor: pointer;
+    opacity: 0.5;
+
+    &:hover {
+      opacity: 1;
+    }
+
+    .gantt__row--edit & {
+      opacity: 1;
+      color: $brand-primary;
+    }
+  }
+
+  &__work {
+    &-proj {
+      position: absolute;
+      opacity: 0.001;
+      pointer-events: none;
+      height: 65%;
+      z-index: map-get($zindex, gantt-proj);
+      @include transition(all 222ms ease);
+
+      .hide-out & {
+        height: 85%;
+      }
+
+      &:before {
+        content: ' ';
+        width: 100%;
+        height: 100%;
+        position: absolute;
+        top: 0;
+        left: 0;
+      }
+
+      &:after {
+        position: absolute;
+        top: 50%;
+        left: 5px;
+        opacity: 0.001;
+        font-size: 11px;
+        content: attr(data-proj-label);
+        transform: translate3d(0,-50%,0);
+      }
+
+      button {
+        position: absolute;
+        top: 0;
+        right: 4px;
+        width: 20px;
+        height: 100%;
+        border: 0;
+        background: transparent;
+        opacity: 0.001;
+
+        &:before {
+          content: '\f3d6';
+          @extend %icon-ion;
+          font-size: 25px;
+        }
+      }
+
+      &--out {
+        height: 20% !important;
+        bottom: 10%;
+        opacity: 0.001;
+        pointer-events: none;
+
+        .hide-out & {
+          opacity: 0.001 !important;
+        }
+
+        &:hover {
+          height: 50% !important;
+        }
+      }
+
+      &:hover {
+        opacity: 0.95 !important;
+
+        &:after {
+          opacity: 1;
+        }
+
+        button {
+          opacity: 1;
+        }
+      }
+
+      @for $i from 1 through 15 {
+        $color: color(nth($gantt-proj-theme, $i), 100);
+        $color-out: color(nth($gantt-proj-theme, $i), 200);
+        $color-text: color(nth($gantt-proj-theme, $i), 900);
+
+        &[data-proj='#{$i}'] {
+          &:before {
+            background: rgba($color, 1);
+            color: $color-text;
+          }
+
+          &:after, button {
+            color: $color-text;
+          }
+
+          .show-proj-#{$i} & {
+            pointer-events: auto;
+            opacity: 0.75;
+          }
+        }
+
+        @include projStatus($color, "[data-proj='#{$i}']:before");
+
+        &--out[data-proj='#{$i}'] {
+          &:before {
+            background: $color-out;
+          }
+
+          .show-proj-#{$i} & {
+            pointer-events: auto;
+            opacity: 0.75;
+          }
+        }
+      }
+    }
+  }
+
+  &__legend {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+  }
+
+  &__itemLegend {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: center;
+    margin-right: 15px;
+
+    &:before {
+      content: ' ';
+      width: 40px;
+      height: 20px;
+      margin-right: 5px;
+    }
+
+    span {
+      text-transform: uppercase;
+      @include font(12px);
+    }
+
+    @include projStatus($brand-primary, ":before");
+  }
+
+  &__deadline {
+    position: absolute;
+    bottom: 0;
+    width: 2px;
+    height: calc(100% - 20px);
+    z-index: map-get($zindex, gantt-proj) + 2;
+    opacity: 0.001;
+    @include transition(all 222ms ease);
+
+    &:before {
+      position: absolute;
+      top: 0;
+      right: 0;
+      height: 20px;
+      content: attr(data-proj-label);
+      font-size: 10px;
+      line-height: 20px;
+      transform: scale3d(0,0,0);
+      padding: 0 6px;
+      border-radius: 2px;
+      white-space: nowrap;
+      background: #fff;
+    }
+
+    @for $i from 1 through 15 {
+      $color: color(nth($gantt-proj-theme, $i), 400);
+
+      &[data-proj='#{$i}'] {
+        background: $color;
+
+        &:before {
+          border: 1px solid $color;
+          color: $color;
+        }
+
+        .show-proj-#{$i} & {
+          pointer-events: auto;
+          opacity: 0.9;
+        }
+      }
+    }
+
+    &:hover, &--fixed {
+      opacity: 1;
+
+      &:before {
+        transform: scale3d(1,1,1) translate3d(calc(50% - 1px), -100%,0);
+      }
+    }
+  }
+}

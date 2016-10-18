@@ -1,0 +1,43 @@
+.card-item {
+  @include span(12);
+  position: relative;
+  padding: $content-padding;
+  margin-bottom: $content-padding;
+  background: #fff;
+  box-shadow: 1px 1px 0px 0px rgba(darken(getColor(default,bg), 25%),0.6);
+
+  a {
+    color: #4A4A4A;
+
+    &:hover {
+      color: getColor(default, link-hover);
+      border-bottom: 1px solid getColor(default, link-hover);
+    }
+  }
+
+  h3 {
+    padding-bottom: 2px;
+  }
+
+  > span {
+    color: #D0021B;
+  }
+
+  &__btn {
+    @include centerer(false, true);
+    right: $content-padding;
+
+    a {
+      font-size: 28px;
+      color: #9B9B9B;
+      padding: 0 ($content-padding / 2);
+      margin: 0 ($content-padding / 2);
+      display: inline-block;
+
+      &:hover {
+        color: getColor(default, link-hover);
+        border: none !important;
+      }
+    }
+  }
+}

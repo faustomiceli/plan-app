@@ -1,0 +1,651 @@
+<!doctype html>
+<html>
+    <head>
+      <meta charset="utf-8">
+      <meta http-equiv="x-ua-compatible" content="ie=edge">
+      <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, height=device-height" />
+      <title>Plan application</title>
+
+      <link rel="apple-touch-icon" href="apple-touch-icon.png">
+
+      <link rel="stylesheet" href="styles/font.css">
+      <link rel="stylesheet" href="styles/main.css">
+    </head>
+    <body ng-app="BlankApp">
+    <div class="wrapper">
+      <header class="head">
+        <div class="head__logo">
+          <!-- LOGO -->
+        </div>
+
+        <div class="head__buttons">
+          <a href="" class="head__btn"><i class="ion ion-android-settings"></i></a>
+          <a href="" class="head__btn head__btn--txtLeft"><i class="ion ion-android-person"></i><span>Giorgio Bottini</span></a>
+          <a class="head__btn head__btn--txtLeft head__btn--search"><i class="ion ion-android-search"></i>
+            <form action="">
+              <input id="search" type="search" placeholder="Cerca">
+            </form>
+          </a>
+        </div>
+      </header>
+
+      <div class="leftbar">
+        <div class="leftbar__content">
+          <nav class="leftbar__nav">
+            <h2>Clienti</h2>
+            <ul>
+              <li>
+                <a href=""><span>Cliente 1</span></a>
+                <div class="itemBtn">
+                    <a href="#"><i class="ion ion-edit"></i></a>
+                    <a href="#"><i class="ion ion-trash-b"></i></a>
+                </div>
+              </li>
+              <li class="selected">
+                <a href=""><span>Cliente 2</span></a>
+                <div class="itemBtn">
+                    <a href="#"><i class="ion ion-edit"></i></a>
+                    <a href="#"><i class="ion ion-trash-b"></i></a>
+                </div>
+              </li>
+              <li>
+                <a href=""><span>Cliente cliente cliente cliente cliente cliente 3</span></a>
+                <div class="itemBtn">
+                    <a href="#"><i class="ion ion-edit"></i></a>
+                    <a href="#"><i class="ion ion-trash-b"></i></a>
+                </div>
+              </li>
+            </ul>
+          </nav>
+
+          <nav class="leftbar__nav">
+            <h2>Task</h2>
+            <ul>
+              <li><a href=""><span>Task aperti</span></a></li>
+              <li><a href=""><span>Task in corso</span></a></li>
+              <li><a href=""><span>Task chiusi</span></a></li>
+              <li><a href=""><span>Task aperti</span></a></li>
+              <li><a href=""><span>Task in corso</span></a></li>
+              <li><a href=""><span>Task chiusi</span></a></li>
+              <li><a href=""><span>Task aperti</span></a></li>
+              <li><a href=""><span>Task in corso</span></a></li>
+              <li><a href=""><span>Task chiusi</span></a></li>
+              <li><a href=""><span>Task aperti</span></a></li>
+              <li><a href=""><span>Task in corso</span></a></li>
+              <li><a href=""><span>Task chiusi</span></a></li>
+              <li><a href=""><span>Task aperti</span></a></li>
+              <li><a href=""><span>Task in corso</span></a></li>
+              <li><a href=""><span>Task chiusi</span></a></li>
+              <li><a href=""><span>Task aperti</span></a></li>
+              <li><a href=""><span>Task in corso</span></a></li>
+              <li><a href=""><span>Task chiusi</span></a></li>
+              <li><a href=""><span>Task aperti</span></a></li>
+              <li><a href=""><span>Task in corso</span></a></li>
+              <li><a href=""><span>Task chiusi</span></a></li>
+              <li><a href=""><span>Task aperti</span></a></li>
+              <li><a href=""><span>Task in corso</span></a></li>
+              <li><a href=""><span>Task chiusi</span></a></li>
+              <li><a href=""><span>Task aperti</span></a></li>
+              <li><a href=""><span>Task in corso</span></a></li>
+              <li><a href=""><span>Task chiusi</span></a></li>
+            </ul>
+          </nav>
+        </div>
+
+        <div class="leftbar__buttons">
+          <button class="btn" data-tooltip="Nuovo elemento"><i class="ion ion-plus"></i></button>
+          <button class="btn" rel="toggleLeftbar">
+            <div class="close">
+              <div class="bar"></div>
+              <div class="bar"></div>
+            </div>
+          </button>
+        </div>
+      </div>
+
+      <div class="content">
+        <section class="box">
+          <div class="box__content">
+            <h2>Matricola: <b>MOD 077/A</b> <span>(Progetto aperto)</span></h2>
+
+            <form id="form111">
+              <div class="formfield formfield--col5 formfield--error">
+                <label class="formfield__label" id="nome_title" for="nome">Nome</label>
+                <input id="nome" name="nome" type="text" class="formfield__input" value="" tabindex="1">
+                <span class="formfield__error">Compila il campo obbligatorio</span>
+              </div>
+
+              <div class="formfield formfield--col5">
+                <label class="formfield__label" id="nome_title" for="matricola">Matricola</label>
+                <input id="matricola" name="nome" type="text" class="formfield__input" value="" tabindex="2">
+              </div>
+
+              <div class="formfield formfield--col5 formfield--start">
+                <label class="formfield__label" id="nome_title" for="azienda">Azienda</label>
+                <select id="azienda" class="formfield__select" value="" tabindex="3">
+                  <option>Azienda1</option>
+                  <option>Azienda2</option>
+                  <option>Azienda3</option>
+                </select>
+              </div>
+
+              <div class="formfield formfield--col5">
+                <label class="formfield__label" id="nome_title" for="disegno">Disegno</label>
+                <input id="disegno" name="nome" type="text" class="formfield__input" value="" tabindex="4">
+              </div>
+
+              <div class="formfield formfield--col5 formfield--start">
+                <label class="formfield__label" id="nome_title" for="inizio">Data di inizio</label>
+                <input id="inizio" name="nome" type="text" placeholder="gg/mm/aaaa" class="formfield__input" value="" tabindex="5">
+              </div>
+
+              <div class="formfield formfield--col5">
+                <label class="formfield__label" id="nome_title" for="consegna">Data di consegna</label>
+                <input id="consegna" name="nome" type="text" placeholder="gg/mm/aaaa" class="formfield__input" value="" tabindex="6">
+              </div>
+
+              <div class="formfield formfield--col10">
+                <label class="formfield__label" id="nome_title" for="descrizione">Descrizione</label>
+                <textarea id="descrizione" name="nome" class="formfield__textarea" tabindex="7"></textarea>
+              </div>
+
+              <div class="formfield formfield--col2 formfield--start">
+                <input class="formfield__button" type="submit" value="Invia">
+              </div>
+            </form>
+          </div>
+        </section>
+
+        <section class="box">
+          <header class="box__header">
+            <h2 class="title">Gantt</h2>
+          </header>
+
+          <div class="box__content">
+
+            <div id="gantt-id" class="gantt show-proj-1 show-proj-2">
+              <div class="gantt__proj-list" data-filter="true">
+                <button class="gantt__proj-button" data-proj="1">Progetto 1</button>
+                <button class="gantt__proj-button" data-proj="2">Progetto 2</button>
+                <button class="gantt__proj-button" data-proj="3">Progetto 3</button>
+                <button class="gantt__proj-button gantt__proj-button--order" data-modal-id="gantt-modal">Ordina i progetti</button>
+              </div>
+
+              <!-- Modal - order gantt project -->
+              <div class="ffmodal ffmodal--right ffmodal--vw30" id="gantt-modal">
+                <div class="ffmodal__content">
+                  <div class="gantt__proj-list gantt__proj-list--vertical" data-sortable="true">
+                    <button class="gantt__proj-button" data-proj="1">Progetto 1</button>
+                    <button class="gantt__proj-button" data-proj="2">Progetto 2</button>
+                    <button class="gantt__proj-button" data-proj="3">Progetto 3</button>
+                  </div>
+                </div>
+                <button class="ffmodal__closeBtn"></button>
+              </div>
+              <!-- / Modal -->
+
+              <div class="gantt__wrapper">
+
+                <div id="wrapper-left">
+                  <div class="gantt__row gantt__row--noedit">
+
+                    <h4>
+                      Scarico:
+                      <div class="toggle">
+                        <input id="toggleOut" type="checkbox" checked />
+                        <label for="toggleOut">
+                          <div class="card"></div>
+                        </label>
+                      </div>
+                    </h4>
+                  </div>
+
+
+                  <div class="gantt__row" data-stage="1">
+                    <h2>Progettazione</h2>
+
+                    <div class="gantt__edit">
+                      <div class="gantt__editProj">
+                        <h2>Progetto 1</h2>
+                        <div>
+                          <input type="text" value="8" name="hours-3">
+                        </div>
+                        <div>
+                          <input type="text" value="1" name="hours-resources-3">
+                        </div>
+                      </div>
+
+                      <div class="gantt__editProj">
+                        <h2>Progetto 2</h2>
+                        <div>
+                          <input type="text" value="8" name="hours-3">
+                        </div>
+                        <div>
+                          <input type="text" value="1" name="hours-resources-3">
+                        </div>
+                      </div>
+
+                      <button>Salva modifiche</button>
+                    </div>
+                  </div>
+                  <div class="gantt__row" data-stage="2"><h2>Montaggio</h2></div>
+                </div>
+
+                <div id="wrapper-right">
+                  <div class="gantt__scroll">
+
+                    <div class="gantt__header">
+                      <ul data-month="Dicembre">
+                        <li>31</li>
+                      </ul>
+                      <ul data-month="Gennaio" class="label-offsetLeft">
+                        <li>1</li>
+                        <li>2</li>
+                        <li>3</li>
+                        <li>4</li>
+                        <li>5</li>
+                        <li class="today">6</li>
+                        <li class="holiday">7</li>
+                        <li>8</li>
+                        <li>9</li>
+                        <li>10</li>
+                        <li>11</li>
+                        <li>12</li>
+                        <li>13</li>
+                        <li>14</li>
+                        <li>15</li>
+                        <li>16</li>
+                        <li>17</li>
+                        <li>18</li>
+                        <li>19</li>
+                        <li>20</li>
+                        <li>21</li>
+                        <li>22</li>
+                        <li>23</li>
+                        <li class="today">24</li>
+                        <li>25</li>
+                        <li>26</li>
+                        <li>27</li>
+                        <li>28</li>
+                        <li>29</li>
+                        <li>30</li>
+                        <li>31</li>
+                      </ul>
+                    </div>
+
+                    <div class="gantt__work">
+                      <div class="gantt__work-proj gantt__work-proj--expiring" data-proj="1" data-proj-daylength="5" data-proj-dayStart="0" data-proj-label="5gg" data-proj-next="5"></div>
+                      <div class="gantt__work-proj gantt__work-proj--out" data-proj="1" data-proj-daylength="5" data-proj-dayStart="0" data-proj-label="5gg"></div>
+
+                      <div class="gantt__work-proj gantt__work-proj--done" data-proj="2"  data-proj-daylength="6" data-proj-dayStart="5"></div>
+                      <div class="gantt__work-proj gantt__work-proj--out" data-proj="2"  data-proj-daylength="6" data-proj-dayStart="5"></div>
+                    </div>
+
+                    <div class="gantt__work">
+                      <div class="gantt__work-proj gantt__work-proj--expired" data-proj="1" data-proj-daylength="4" data-proj-dayStart="5"></div>
+                      <div class="gantt__work-proj gantt__work-proj--out" data-proj="1" data-proj-daylength="4" data-proj-dayStart="5"></div>
+
+                      <div class="gantt__work-proj" data-proj="2" data-proj-daylength="4" data-proj-dayStart="6"></div>
+                      <div class="gantt__work-proj gantt__work-proj--out" data-proj="2" data-proj-daylength="3" data-proj-dayStart="11"></div>
+                    </div>
+
+                    <div class="gantt__deadline gantt__deadline--fixed" data-proj="1" data-proj-day="10" data-proj-label="10 dicembre 2016"></div>
+                    <div class="gantt__deadline" data-proj="2" data-proj-day="13" data-proj-label="10.12.2016"></div>
+                  </div>
+                </div>
+
+              </div>
+
+              <div class="gantt__legend">
+                <div class="gantt__itemLegend gantt__itemLegend--expiring"><span>In scadenza</span></div>
+                <div class="gantt__itemLegend gantt__itemLegend--expired"><span>Scaduti</span></div>
+                <div class="gantt__itemLegend gantt__itemLegend--done"><span>Completati</span></div>
+              </div>
+            </div>
+
+          </div>
+        </section>
+
+        <section class="box">
+          <header class="box__header">
+            <h2 class="title">Scarico</h2>
+          </header>
+
+          <div class="box__content box__content--flex">
+            <div class="unloadBox">
+              <h2 contenteditable><span>Montaggio</span></h2>
+              <div class="unloadBox__inner">
+                <div class="unloadBox__data">
+                  <div class="unloadBox__res"><input type="number" min="1" name="res" value="1" /></div>
+                  <div class="unloadBox__hour"><input type="number" min="0" name="hour" value="0" /></div>
+                </div>
+                <div class="unloadBox__btn"></div>
+                <div class="unloadBox__slider"></div>
+                <md-datepicker ng-model="myDate" md-placeholder="Enter date"></md-datepicker>
+                <input type="text" placeholder="input generico" />
+              </div>
+              <div class="unloadBox__delete">
+                <a href="#"><i class="ion ion-trash-b"></i></a>
+              </div>
+            </div>
+
+            <div class="unloadBox">
+              <h2 contenteditable><span>Fresatura</span></h2>
+              <div class="unloadBox__inner unloadBox__inner--man">
+                <div class="unloadBox__data">
+                  <div class="unloadBox__res"><input type="number" min="1" name="res" value="1" /></div>
+                  <div class="unloadBox__hour"><input type="number" min="0" name="hour" value="0" /></div>
+                </div>
+                <div class="unloadBox__btn"></div>
+                <div class="unloadBox__slider"></div>
+
+                <div class="unloadBox__small">
+                  <span class="hour">2</span><span class="res">3</span>
+                </div>
+              </div>
+
+              <div class="unloadBox__inner unloadBox__inner--machine unloadBox__inner--small">
+                <div class="unloadBox__data">
+                  <div class="unloadBox__res"><input type="number" min="1" name="res" value="1" /></div>
+                  <div class="unloadBox__hour"><input type="number" min="0" name="hour" value="0" /></div>
+                </div>
+                <div class="unloadBox__btn"></div>
+                <div class="unloadBox__slider"></div>
+
+                <div class="unloadBox__small">
+                  <span class="hour">2</span><span class="res">3</span>
+                </div>
+              </div>
+            </div>
+
+            <div class="unloadBox">
+              <h2 contenteditable><span>Spedizione</span></h2>
+
+              <div class="unloadBox__inner">
+                <div class="unloadBox__data">
+                  <div class="unloadBox__res"><input type="number" min="1" name="res" value="1" /></div>
+                  <div class="unloadBox__hour"><input type="number" min="0" name="hour" value="0" /></div>
+                </div>
+                <div class="unloadBox__btn"></div>
+                <div class="unloadBox__slider"></div>
+              </div>
+            </div>
+
+            <div class="unloadBox">
+              <h2 contenteditable><span>Spedizione</span></h2>
+
+              <div class="unloadBox__inner">
+                <div class="unloadBox__data">
+                  <div class="unloadBox__hour"><input type="number" min="0" name="hour" value="0" /></div>
+                  <div class="unloadBox__res"><input type="number" min="1" name="res" value="1" /></div>
+                </div>
+                <div class="unloadBox__btn"></div>
+                <div class="unloadBox__slider"></div>
+              </div>
+            </div>
+
+            <div class="unloadBox unloadBox--add"></div>
+          </div>
+
+          <div class="box__content">
+            <button class="btn-rct">visualizza</button>
+            <button class="btn-rct">ordina</button>
+            <button class="btn-rct">ritaglia</button>
+          </div>
+        </section>
+
+        <section class="box">
+          <header class="box__header">
+            <h2 class="title">Modal</h2>
+          </header>
+
+          <div class="box__content">
+            <a class="openModal" data-modal-id="modal222">Open right</a><br>
+            <a class="openModal" data-modal-id="modal333">Open left</a>
+
+            <div class="ffmodal ffmodal--right ffmodal--vw30" id="modal222">
+              <div class="ffmodal__content">
+                <form id="form222">
+                  <div class="formfield formfield--col6">
+                    <label class="formfield__label" id="nome_title" for="nome">Nome</label>
+                    <input id="nome" name="nome" type="text" class="formfield__input" value="" tabindex="1">
+                  </div>
+
+                  <div class="formfield formfield--col6">
+                    <label class="formfield__label" id="nome_title" for="matricola">Matricola</label>
+                    <input id="matricola" name="nome" type="text" class="formfield__input" value="" tabindex="2">
+                  </div>
+
+                  <div class="formfield formfield--col6 formfield--start">
+                    <label class="formfield__label" id="nome_title" for="azienda">Azienda</label>
+                    <select id="azienda" class="formfield__select" value="" tabindex="3">
+                      <option>Azienda1</option>
+                      <option>Azienda2</option>
+                      <option>Azienda3</option>
+                    </select>
+                  </div>
+
+                  <div class="formfield formfield--col6">
+                    <label class="formfield__label" id="nome_title" for="disegno">Disegno</label>
+                    <input id="disegno" name="nome" type="text" class="formfield__input" value="" tabindex="4">
+                  </div>
+
+                  <div class="formfield formfield--col6 formfield--start">
+                    <label class="formfield__label" id="nome_title" for="inizio">Data di inizio</label>
+                    <input id="inizio" name="nome" type="text" placeholder="gg/mm/aaaa" class="formfield__input" value="" tabindex="5">
+                  </div>
+
+                  <div class="formfield formfield--col6">
+                    <label class="formfield__label" id="nome_title" for="consegna">Data di consegna</label>
+                    <input id="consegna" name="nome" type="text" placeholder="gg/mm/aaaa" class="formfield__input" value="" tabindex="6">
+                  </div>
+
+                  <div class="formfield formfield--col12">
+                    <label class="formfield__label" id="nome_title" for="descrizione">Descrizione</label>
+                    <textarea id="descrizione" name="nome" class="formfield__textarea" tabindex="7"></textarea>
+                  </div>
+
+                  <div class="formfield formfield--col12 formfield--start">
+                    <input class="formfield__button" type="submit" value="Invia">
+                  </div>
+                </form>
+              </div>
+              <button class="ffmodal__closeBtn"></button>
+            </div>
+
+            <div class="ffmodal ffmodal--left" id="modal333">
+              <div class="ffmodal__content">
+                <form id="form222">
+                  <div class="formfield formfield--col6">
+                    <label class="formfield__label" id="nome_title" for="nome">Nome</label>
+                    <input id="nome" name="nome" type="text" class="formfield__input" value="" tabindex="1">
+                  </div>
+
+                  <div class="formfield formfield--col6">
+                    <label class="formfield__label" id="nome_title" for="matricola">Matricola</label>
+                    <input id="matricola" name="nome" type="text" class="formfield__input" value="" tabindex="2">
+                  </div>
+
+                  <div class="formfield formfield--col6 formfield--start">
+                    <label class="formfield__label" id="nome_title" for="azienda">Azienda</label>
+                    <select id="azienda" class="formfield__select" value="" tabindex="3">
+                      <option>Azienda1</option>
+                      <option>Azienda2</option>
+                      <option>Azienda3</option>
+                    </select>
+                  </div>
+
+                  <div class="formfield formfield--col6">
+                    <label class="formfield__label" id="nome_title" for="disegno">Disegno</label>
+                    <input id="disegno" name="nome" type="text" class="formfield__input" value="" tabindex="4">
+                  </div>
+
+                  <div class="formfield formfield--col6 formfield--start">
+                    <label class="formfield__label" id="nome_title" for="inizio">Data di inizio</label>
+                    <input id="inizio" name="nome" type="text" placeholder="gg/mm/aaaa" class="formfield__input" value="" tabindex="5">
+                  </div>
+
+                  <div class="formfield formfield--col6">
+                    <label class="formfield__label" id="nome_title" for="consegna">Data di consegna</label>
+                    <input id="consegna" name="nome" type="text" placeholder="gg/mm/aaaa" class="formfield__input" value="" tabindex="6">
+                  </div>
+
+                  <div class="formfield formfield--col12">
+                    <label class="formfield__label" id="nome_title" for="descrizione">Descrizione</label>
+                    <textarea id="descrizione" name="nome" class="formfield__textarea" tabindex="7"></textarea>
+                  </div>
+
+                  <div class="formfield formfield--col12 formfield--start">
+                    <input class="formfield__button" type="submit" value="Invia">
+                  </div>
+                </form>
+              </div>
+              <button class="ffmodal__closeBtn"></button>
+            </div>
+          </div>
+        </section>
+
+        <section class="box">
+          <header class="box__header">
+            <h2 class="title">Costruzione stampi</h2>
+
+            <div class="box__buttons">
+              <button class="btn btn--selected"><i class="ion ion-pie-graph"></i></button>
+              <button class="btn"><i class="ion ion-ios-list"></i></button>
+              <button class="btn"><i class="ion ion-ios-settings-strong"></i></button>
+              <button class="btn btn--separed"><i class="ion ion-chevron-down"></i></button>
+            </div>
+          </header>
+
+          <div class="box__content">
+            <h2>Matricola: <b>MOD 077/A</b> <span>(Progetto aperto)</span></h2>
+
+            <figure class="image image--right">
+              <img src="images/product.png">
+              <a href="" class="image__btn image__btn--bottom image__btn--left image__btn--hastxt"><i class="ion ion-android-download"></i> hd-render.pdf</a>
+              <a href="" class="image__btn image__btn--bottom image__btn--right"><i class="ion ion-search"></i></a>
+            </figure>
+
+            <div class="info info--column info--column-2">
+              <div class="info__item info__item--multiline"><b>Data inizio lavori</b>10.11.2015</div>
+              <div class="info__item info__item--multiline"><b>Data fine lavori</b>08.02.2016</div>
+              <div class="info__item"><b>Referente</b>Giorgio Bottini</div>
+              <div class="info__item"><b>Cliente</b>Seed srl</div>
+            </div>
+
+            <div class="info">
+              <div class="info__item"><b>Responsabile</b>Paolo Rossi</div>
+              <div class="info__item"><b>Operatore</b>Filippo Bianchi</div>
+              <div class="info__item"><b>Consegna</b>Filippo Bianchi</div>
+              <div class="info__item"><b>Scarico</b>
+                <ul>
+                  <li>Filippo Bianchi</li>
+                  <li>Davide Bianchi</li>
+                  <li>Giaomo Bianchi</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section class="box">
+          <header class="box__header">
+            <h2 class="title">List</h2>
+          </header>
+
+          <div class="box__content">
+          5 risultati in ordine decrescente
+          </div>
+
+          <div class="box__content">
+            <div class="card-item">
+              <h3><a href="#">Analisi modifica/costruzione nuovi attrezzi</a> <span>(Aperto)</span></h3>
+              <span>Preventivo</span> - 24.10.2015
+            </div>
+
+            <div class="card-item">
+              <h3><a href="#">Analisi modifica/costruzione nuovi attrezzi</a> <span>(Aperto)</span></h3>
+              <span>Preventivo</span> - 24.10.2015
+            </div>
+
+            <div class="card-item">
+              <h3><a href="">Analisi modifica/costruzione nuovi attrezzi</a> <span>(Aperto)</span></h3>
+              <span>Preventivo</span> - 24.10.2015
+
+              <div class="card-item__btn">
+                <a href="#" data-tooltip="Modifica"><i class="ion ion-edit"></i></a>
+                <a href="#" data-tooltip="Elimina"><i class="ion ion-trash-b"></i></a>
+              </div>
+            </div>
+
+            <div class="card-item">
+              <h3><a href="">Analisi modifica/costruzione nuovi attrezzi</a> <span>(Aperto)</span></h3>
+              <span>Preventivo</span> - 24.10.2015
+            </div>
+          </div>
+
+          <nav class="box__navigation">
+            <ul class="pagination pagination--center">
+              <li><a href="#" class="current">1</a></li>
+              <li><a href="#">2</a></li>
+              <li><a href="#">3</a></li>
+              <li><a href="#">4</a></li>
+              <li><a href="#">Ultima &#10095;</a></li>
+            </ul>
+          </nav>
+        </section>
+
+        <section class="box">
+          <header class="box__header">
+            <h2 class="title">Table</h2>
+          </header>
+
+          <div class="box__content">
+            <table class="table table--col10">
+              <thead>
+                <tr>
+                  <th>Id</th>
+                  <th>Titolo</th>
+                  <th>Ore</th>
+                </tr>
+              </thead>
+
+              <tbody>
+                <tr>
+                  <td class="td--alignCenter">512</td>
+                  <td>Progetto 1</td>
+                  <td class="td--alignRight">21</td>
+                </tr>
+                <tr>
+                  <td class="td--alignCenter">512</td>
+                  <td>Progetto 1</td>
+                  <td class="td--alignRight">21</td>
+                </tr>
+                <tr>
+                  <td class="td--alignCenter">512</td>
+                  <td>Progetto 1</td>
+                  <td class="td--alignRight">21</td>
+                </tr>
+              </tbody>
+
+              <tfoot>
+                <tr>
+                  <td></td>
+                  <td></td>
+                  <td class="td--alignRight td--evidence">63</td>
+                </tr>
+              </tfoot>
+            </table>
+          </div>
+
+        </section>
+      </div>
+    </div>
+
+    <script src="scripts/vendor/jquery-2.1.4.min.js"></script>
+    <script src="scripts/main.js"></script>
+    <script>
+      App.main();
+    </script>
+    </body>
+</html>

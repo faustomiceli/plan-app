@@ -1,0 +1,64 @@
+.image {
+  box-sizing: border-box;
+  max-width: 100%;
+  position: relative;
+  border: 3px solid $brand-primary;
+  display: inline-block;
+  margin: 0 0 $content-padding 0;
+
+  &--left {
+    float: left;
+    margin-right: $content-padding;
+  }
+
+  &--right {
+    float: right;
+    margin-left: $content-padding;
+  }
+
+  img {
+    display: block;
+    width: 100%;
+  }
+
+  &__btn {
+    $btn-size: 40px;
+    position: absolute;
+    height: $btn-size;
+    background: rgba($brand-primary, 0.5);
+    line-height: $btn-size;
+    color: #fff;
+    min-width: $btn-size;
+
+    &--hastxt {
+      padding: 0 $content-padding 0 ($btn-size + ($content-padding / 2));
+    }
+
+    &--left {
+      left: 0;
+    }
+
+    &--right {
+      right: 0;
+    }
+
+    &--top {
+      top: 0;
+    }
+
+    &--bottom {
+      bottom: 0;
+    }
+
+    i {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: $btn-size;
+      height: $btn-size;
+      text-align: center;
+      font-size: 26px;
+      line-height: $btn-size;
+    }
+  }
+}

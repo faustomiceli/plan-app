@@ -1,0 +1,55 @@
+$brand-primary: #267CB3;
+$brand-secondary: #F9F9F9;
+$brand-error: #C62828;
+
+$colors: (
+  default: (
+    bg: #F9F9F9,
+    txt: #4A4A4A,
+    link: #14547C,
+    link-hover: darken(#14547C, 10%)
+  ),
+  tooltip: (
+    bg: #09273A,
+    txt: #fff
+  ),
+  leftbar: (
+    bg: #14547C
+  ),
+  header: (
+    btn-bg-hover: #14547C
+  ),
+  btn: (
+    bg: #fff,
+    icon: #14547C,
+    dark-bg: #09273A,
+    dark-icon: #fff
+  ),
+  btn-rct: (
+    bg: darken($brand-primary, 15%),
+    color: #fff,
+    bg-hover: $brand-primary
+  ),
+  pagination: (
+    txt: #14547C,
+    bg: #fff,
+    txt-hover: #fff,
+    bg-hover: $brand-primary
+  ),
+  form: (
+    bg: darken($brand-primary, 15%),
+    error: $brand-error
+  ),
+  gantt: (
+    border: #ECECEC,
+    holiday: #D0021B,
+    today: $brand-primary
+  ),
+  table: (
+    thead-bg: darken($brand-primary, 10%),
+    thead-txt: #fff,
+    tbody-even: lighten(desaturate($brand-primary, 40%), 50%),
+    tbody-hover: lighten(desaturate($brand-primary, 50%), 45%),
+    tfoot-border: darken($brand-primary, 10%)
+  )
+);

@@ -1,0 +1,108 @@
+.ffmodal {
+  $modal-path: &;
+  $modal-padding: 10px;
+  $modal-closeBtn-size: 44px;
+  $modal-animation-timing: 333ms;
+
+  position: fixed;
+  width: 50vw;
+  z-index: map-get($zindex, modal);
+  backface-visibility: hidden;
+  visibility: hidden;
+  @include transition(visibility ($modal-animation-timing * 2));
+
+  &--open {
+    visibility: visible;
+  }
+
+  &--right {
+    top: $header-height;
+    right: 0;
+    height: calc(100vh - #{$header-height});
+  }
+
+  &--left {
+    top: $header-height;
+    left: 0;
+    height: calc(100vh - #{$header-height});
+  }
+
+  @for $i from 1 through 100 {
+    @if ($i % 10 == 0) {
+      &--vw#{$i} {
+        width: #{$i}vw;
+      }
+    }
+  }
+
+  &__closeBtn {
+    position: absolute;
+    top: $modal-padding;
+    z-index: -1;
+    width: $modal-closeBtn-size;
+    height: $modal-closeBtn-size;
+    cursor: pointer;
+    background: transparent;
+    border: 0;
+    color: rgba(#fff, 0.8);
+    opacity: 0.001;
+    transform: translate3d(0, 0, 0);
+    @include transition(transform $modal-animation-timing ease, opacity $modal-animation-timing ease);
+
+    #{$modal-path}--right & {
+      left: 0;
+    }
+
+    #{$modal-path}--left & {
+      right: 0;
+    }
+
+    &:hover {
+      color: rgba(#fff,1);
+    }
+
+    &:before {
+      @extend %icon-ion;
+      content: '\f12a';
+      font-size: $modal-closeBtn-size - 10;
+    }
+
+    #{$modal-path}--open & {
+      opacity: 1;
+      transition-delay: $modal-animation-timing;
+
+      @at-root #{$modal-path}--right#{&} {
+        transform: translate3d(-#{$modal-closeBtn-size + $modal-padding}, 0, 0);
+      }
+
+      @at-root #{$modal-path}--left#{&} {
+        transform: translate3d(#{$modal-closeBtn-size + $modal-padding}, 0, 0);
+      }
+    }
+  }
+
+  &__content {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 1;
+    width: 100%;
+    height: 100%;
+    background: #fff;
+    padding: $modal-padding;
+
+    #{$modal-path}--right & {
+      transform: translate3d(100%, 0, 0);
+      @include transition(transform $modal-animation-timing ease);
+    }
+
+    #{$modal-path}--left & {
+      transform: translate3d(-100%, 0, 0);
+      @include transition(transform $modal-animation-timing ease);
+    }
+
+    #{$modal-path}--open & {
+      transform: translate3d(0, 0, 0);
+    }
+  }
+}

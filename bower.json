@@ -1,0 +1,23 @@
+{
+  "name": "plan-app",
+  "version": "1.0.0",
+  "authors": [
+    "Fausto Miceli <fausto.miceli@gmail.com>"
+  ],
+  "description": "",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "susy": "~2.2.6"
+  }
+}

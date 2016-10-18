@@ -1,0 +1,49 @@
+.box {
+  $box-padding: $content-padding * 2;
+
+  margin-bottom: $content-padding * 3;
+
+  &__header {
+    @include container();
+    position: relative;
+    background: $brand-primary;
+    padding: ($box-padding / 1.5) $box-padding;
+    margin-bottom: $box-padding;
+
+    .title {
+      @include font(30px, 30px, $font-family-condensed);
+      text-transform: uppercase;
+      color: $brand-secondary;
+      text-shadow: 1px 1px 0px rgba(darken($brand-primary, 25%),0.6);
+      padding: 0;
+    }
+  }
+
+  &__buttons {
+    position: absolute;
+    bottom: -($btn-h / 2);
+    right: $box-padding;
+  }
+
+  &__content, &__navigation {
+    @include container();
+    padding: 0 $box-padding ($box-padding / 2);
+
+    &--flex {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: flex-start;
+    }
+
+    &:first-child {
+      margin-top: $box-padding;
+    }
+  }
+
+  &__navigation {
+    div, span {
+      float: left;
+    }
+  }
+}
